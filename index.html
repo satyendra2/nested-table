@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Kitchen Items</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+   <style>
+      table,th,td,tr{
+         text-align: center;
+      }
+   </style>
+</head>
+<body>
+<div class="container-fluid">
+   <div class="row">
+      <div class="col-md-12">
+         <h2>Kitchen Items Application</h2>
+         <div ng-app = "myApp" ng-controller = "itemController">
+            <input type="text" ng-model="name">
+            <br/>
+            <br/>
+            <table id="myTable" class="table table-striped table-bordered">
+               <thead>
+               <tr>
+                  <th ng-click="sortTable()">Code</th>
+                  <th ng-click="sortTable()">Name</th>
+                  <th ng-click="sortTable()">Location</th>
+                  <th ng-click="sortTable()">Price</th>
+               </tr>
+               </thead>
+               <tbody ng-repeat = "item in items | filter:name">
+               <tr >
+                  <td ><input type="checkbox" ng-model="myVar">{{item.code}}</td>
+				  <td>{{item.name}}</td>
+                  <td>{{item.location}}</td>
+                  <td>{{item.price}}</td>
+				  </tr>
+				  <tr ng-show="myVar" ng-repeat = "item in item.items">
+				  <td>{{item.code}}</td>
+                  <td>{{item.name}}</td>
+                  <td>{{item.location}}</td>
+                  <td>{{item.price}}</td>
+				  </tr>
+               </tbody>
+            </table>
+		 </div>	
+	  </div>	
+	</div>	
+</div>
+<script>
+     angular.module("myApp",[])
+	  .controller("itemController",function($scope){
+	  $scope.items = [{
+	  code:"01",
+	  items:[
+	  {
+	         code:"01",
+			 name:"pulse2",
+			 location:"drawer2",
+			 price:"121"
+	  },{
+	         code:"03",
+			 name:"pulse3",
+			 location:"drawer3",
+			 price:"122"
+	  }
+	  ],
+			 name:"pulse1",
+			 location:"drawer1",
+			 price:"120"
+	  },{code:"02",
+	  items:[
+	  {
+	         code:"04",
+			 name:"pulse4",
+			 location:"drawer4",
+			 price:"124"
+	  },{
+	         code:"05",
+			 name:"pulse5",
+			 location:"drawer5",
+			 price:"125"
+	  }
+	  ], name:"pulse2",
+			 location:"drawer2",
+			 price:"122"
+	  }
+	  ];
+	  });
+</script>
+
+</body>
+</html>	
